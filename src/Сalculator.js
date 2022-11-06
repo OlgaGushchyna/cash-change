@@ -15,37 +15,96 @@ export default function Calculator(props) {
   ]);
 
   useEffect(() => {
+    function countCurrencies() {
+      if (props.data === null) return null;
+      if (giveCurr === takeCurr) {
+        setTake(give);
+        return;
+      }
+
+      if (nameChangeOperation[0] === "Отдаю:") {
+        isGive();
+      } else {
+        isTake();
+      }
+    }
     countCurrencies();
-  }, [props.data]);
 
-  useEffect(() => {
-    countCurrencies();
-  }, [nameChangeOperation]);
+    function isGive() {
+      let rezult = 0;
+      switch (giveCurr) {
+        case "USD":
+          if (takeCurr === "UAH") {
+            rezult = (give * props.data[0].buy).toFixed(2);
+          }
+          if (takeCurr === "EUR") {
+            rezult = ((give * props.data[0].buy) / props.data[1].sale).toFixed(
+              2
+            );
+          }
+          break;
+        case "EUR":
+          if (takeCurr === "UAH") {
+            rezult = (give * props.data[1].buy).toFixed(2);
+          }
+          if (takeCurr === "USD") {
+            rezult = ((give * props.data[1].buy) / props.data[0].sale).toFixed(
+              2
+            );
+          }
+          break;
+        case "UAH":
+          if (takeCurr === "USD") {
+            rezult = (give / props.data[0].sale).toFixed(2);
+          }
+          if (takeCurr === "EUR") {
+            rezult = (give / props.data[1].sale).toFixed(2);
+          }
+          break;
+        default:
+          return;
+      }
+      setTake(rezult);
+    }
 
-  useEffect(() => {
-    countCurrencies();
-  }, [give]);
-
-  useEffect(() => {
-    countCurrencies();
-  }, [giveCurr]);
-
-  useEffect(() => {
-    countCurrencies();
-  }, [takeCurr]);
-
-  //function handleSubmit(event) {
-  //  event.preventDefault();
-  //  let giveSum = event.target.value;
-  // setGive(event.target.value);
-  //  countCurrencies(giveSum, "EUR", -1, "UAH");
-  //  console.log(giveSum + "  ");
-  //}
-
-  //function handleSubmit2(event) {
-  //  event.preventDefault();
-  //  console.log("Hello2");
-  // }
+    function isTake() {
+      let rezult2 = 0;
+      switch (takeCurr) {
+        case "USD":
+          if (giveCurr === "UAH") {
+            rezult2 = (give / props.data[0].buy).toFixed(2);
+            console.log("USD = UAH " + rezult2);
+          }
+          if (giveCurr === "EUR") {
+            rezult2 = ((give * props.data[1].sale) / props.data[0].buy).toFixed(
+              2
+            );
+          }
+          break;
+        case "EUR":
+          if (giveCurr === "UAH") {
+            rezult2 = (give / props.data[1].buy).toFixed(2);
+          }
+          if (giveCurr === "USD") {
+            rezult2 = ((give * props.data[0].sale) / props.data[1].buy).toFixed(
+              2
+            );
+          }
+          break;
+        case "UAH":
+          if (giveCurr === "USD") {
+            rezult2 = (give * props.data[0].sale).toFixed(2);
+          }
+          if (giveCurr === "EUR") {
+            rezult2 = (give * props.data[1].sale).toFixed(2);
+          }
+          break;
+        default:
+          return;
+      }
+      setTake(rezult2);
+    }
+  }, [nameChangeOperation, give, giveCurr, takeCurr, props.data]);
 
   function onChangeOperation(event) {
     event.preventDefault();
@@ -56,117 +115,16 @@ export default function Calculator(props) {
   function giveChange(event) {
     event.preventDefault();
     setGive(event.target.value);
-    countCurrencies();
   }
 
   function giveCurrChange(event) {
     event.preventDefault();
     setGiveCurr(event.target.value);
-    countCurrencies();
   }
-
-  //function takeChange(event) {
-  //  event.preventDefault();
-  //  console.log(event.target.value);
-
-  //   setTake(event.target.value);
-  //   setIsGive(false);
-  //   countCurrencies(event.target.value, giveCurr, takeCurr, isGive);
-  // }
 
   function takeCurrChange(event) {
     event.preventDefault();
     setTakeCurr(event.target.value);
-    countCurrencies();
-  }
-
-  function countCurrencies() {
-    if (props.data === null) return null;
-    if (giveCurr === takeCurr) {
-      setTake(give);
-      return;
-    }
-
-    if (nameChangeOperation[0] === "Отдаю:") {
-      isGive();
-    } else {
-      isTake();
-    }
-  }
-
-  function isGive() {
-    let rezult = 0;
-    switch (giveCurr) {
-      case "USD":
-        if (takeCurr === "UAH") {
-          rezult = (give * props.data[0].buy).toFixed(2);
-        }
-        if (takeCurr === "EUR") {
-          rezult = ((give * props.data[0].buy) / props.data[1].sale).toFixed(2);
-        }
-        break;
-      case "EUR":
-        if (takeCurr === "UAH") {
-          rezult = (give * props.data[1].buy).toFixed(2);
-        }
-        if (takeCurr === "USD") {
-          rezult = ((give * props.data[1].buy) / props.data[0].sale).toFixed(2);
-        }
-        break;
-      case "UAH":
-        if (takeCurr === "USD") {
-          rezult = (give / props.data[0].sale).toFixed(2);
-        }
-        if (takeCurr === "EUR") {
-          rezult = (give / props.data[1].sale).toFixed(2);
-        }
-        break;
-      default:
-      // code block
-    }
-    setTake(rezult);
-    console.log("give: " + give);
-    console.log(rezult);
-  }
-
-  function isTake() {
-    let rezult2 = 0;
-    switch (takeCurr) {
-      case "USD":
-        if (giveCurr === "UAH") {
-          rezult2 = (give / props.data[0].buy).toFixed(2);
-          console.log("USD = UAH " + rezult2);
-        }
-        if (giveCurr === "EUR") {
-          rezult2 = ((give * props.data[1].sale) / props.data[0].buy).toFixed(
-            2
-          );
-        }
-        break;
-      case "EUR":
-        if (giveCurr === "UAH") {
-          rezult2 = (give / props.data[1].buy).toFixed(2);
-        }
-        if (giveCurr === "USD") {
-          rezult2 = ((give * props.data[0].sale) / props.data[1].buy).toFixed(
-            2
-          );
-        }
-        break;
-      case "UAH":
-        if (giveCurr === "USD") {
-          rezult2 = (give * props.data[0].sale).toFixed(2);
-        }
-        if (giveCurr === "EUR") {
-          rezult2 = (give * props.data[1].sale).toFixed(2);
-        }
-        break;
-      default:
-      // code block
-    }
-    setTake(rezult2);
-    console.log("take: " + give);
-    console.log(rezult2);
   }
 
   return (

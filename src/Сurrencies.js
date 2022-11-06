@@ -6,7 +6,6 @@ import Col from "react-bootstrap/Col";
 import "./Currencies.css";
 
 export default function Currencies(props) {
-  console.log(props);
   if (props.data) {
     return (
       <div className="Currencies">

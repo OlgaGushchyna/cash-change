@@ -7,7 +7,6 @@ import "./App.css";
 
 export default function App() {
   let [currencies, setCurrencies] = useState(null);
-  //let [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,23 +29,11 @@ export default function App() {
         }
         return null;
       });
-      console.log("New currency");
-      console.log(dataCurrency);
       setCurrencies(dataCurrency);
     };
 
     fetchData();
   }, []);
-
-  //function handleResponce(responce) {
-  //  setCurrencies(responce.data);
-  // }
-
-  //function search() {
-  //  let apiUrl =
-  //     "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
-  //   axios.get(apiUrl).then(handleResponce);
-  //}
 
   return (
     <div className="App">
