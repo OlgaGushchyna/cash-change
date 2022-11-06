@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Currencies from "./Сurrencies";
 import Calculator from "./Сalculator";
+import Sign from "./Sign";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -49,6 +50,7 @@ export default function App() {
           </section>
         </header>
       </div>
+      <Sign />
     </div>
   );
 }
