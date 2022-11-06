@@ -131,14 +131,22 @@ export default function Calculator(props) {
     <div className="Calculator">
       <Container className="fluid">
         <Row className="mb-3">
-          <Col className="activeChange">{nameChangeOperation[0]}</Col>
-          <Col>
-            <button onClick={onChangeOperation}>Change</button>
+          <Col className="col-5 name-change">{nameChangeOperation[0]}</Col>
+          <Col className="col-2">
+            <button onClick={onChangeOperation} className=" btn-change">
+              <img
+                className="image"
+                src="https://img.icons8.com/external-creatype-outline-colourcreatype/2x/external-arrow-arrows-creatype-outline-colourcreatype-94.png"
+                alt="arrow"
+              />
+            </button>
           </Col>
-          <Col className="pasiveChange">{nameChangeOperation[1]}</Col>
+          <Col className="col-5  text-end name-change">
+            {nameChangeOperation[1]}
+          </Col>
         </Row>
         <Row>
-          <Col>
+          <Col className="col-6">
             <form className="row pe-2 ps-2">
               <input
                 type="number"
@@ -159,7 +167,7 @@ export default function Calculator(props) {
             </form>
           </Col>
 
-          <Col>
+          <Col className="col-6">
             <form className="row pe-2 ps-2">
               <input
                 text="number"

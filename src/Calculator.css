@@ -1,1 +1,19 @@
+.btn-change:focus {
+  border: 0;
+  background-color: transparent;
+}
+.btn-change {
+  border: 0;
+  background-color: transparent;
+}
 
+.image {
+  height: 30px;
+  width: 50px;
+  background-color: transparent;
+}
+
+.name-change {
+  font-size: 24px;
+  font-style: bolt;
+}
