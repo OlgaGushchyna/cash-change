@@ -1,0 +1,25 @@
+body {
+  background: #f9f8fe;
+}
+h1,
+h3 {
+  padding-left: 12px;
+}
+.App {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.App section {
+  background: white;
+  padding: 30px;
+  border-radius: 6px;
+  box-shadow: 0 10px 20px rgb(0 0 0/10%);
+  margin: 20px 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}

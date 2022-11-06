@@ -1,0 +1,23 @@
+.Currencies {
+  margin-bottom: 15px;
+}
+
+.currency-body {
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+.currency-col {
+  column-gap: 20px;
+}
+
+.course-item-title {
+  font-weight: 700;
+  font-size: 20px;
+}
+.course-item-value {
+  font-size: 32px;
+  font-weight: 300;
+}
